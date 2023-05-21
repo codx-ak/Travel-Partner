@@ -1,0 +1,62 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+{% block content%}
+
+<div class="Auths">
+        <div class="container">
+          <div class="card">
+            
+            <div class="form signup_form">
+                <form method="POST">
+                    {%csrf_token%}
+                  <h2>Signup</h2>
+      
+                  <div class="input_box">
+                    {{form.username}}
+                <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div class="input_box">
+                    {{form.email}}
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div class="input_box">
+                    {{form.password1}}
+                <i class="fa-solid fa-lock"></i>
+                <i class="far fa-eye"></i>
+                  </div>
+                  <div class="input_box">
+                    {{form.password2}}
+                <i class="fa-solid fa-lock"></i>
+                <i class="far fa-eye"></i>
+                  </div>
+      
+                  <button class="button">Signup Now</button>
+      
+                  <div class="login_signup">Already have an account? <a href="{% url 'Login'%}" id="login">SignIn</a></div>
+                </form>
+              </div>
+
+          </div>
+        </div>
+</div>  
+
+{% endblock content%}
+{% block script%}
+<script>
+    pwShowHide = document.querySelectorAll(".fa-eye");
+    
+    pwShowHide.forEach((icon) => {
+    icon.addEventListener("click", () => {
+    let getPwInput = icon.parentElement.querySelector("input");
+    if (getPwInput.type === "password") {
+      getPwInput.type = "text";
+      icon.classList.replace("fa-eye-slash", "fa-eye");
+    } else {
+      getPwInput.type = "password";
+      icon.classList.replace("fa-eye", "fa-eye-slash");
+    }
+  });
+});
+</script>
+{% endblock script%}
+

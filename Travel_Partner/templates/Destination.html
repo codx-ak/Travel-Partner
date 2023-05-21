@@ -1,0 +1,135 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+{% block content%}
+ <!-- destination page starts  -->
+ <div id="destination">
+  <div class="box">
+    <input type="checkbox" id="check">
+    <div class="search-box">
+      <input type="text" placeholder="Type here...">
+      <label for="check" class="icon">
+        <i class="fas fa-search"></i>
+      </label>
+    </div>
+  </div>
+    <div class="pk-filter">
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sort by
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"> Newest</a></li>
+              <li><a class="dropdown-item" href="#"> Trending</a></li>
+            </ul>
+          </div>
+    </div>
+
+    <div class="dest-container">
+        <div class="filter card">
+            <h5>Duration</h5>
+        <form>
+            
+        <label for="day-range"style="font-size:0.9rem; margin-left:8rem ;"class="day-range-sh" >0 days</label>
+        <input type="range" min="2" max="10" name="day-range" minlength="2" maxlength="10" id="day-range">
+        </form>
+        <hr>
+            <h5>Adventure Style</h5>
+        <form>
+            <label><input type="checkbox" name="package-style" value="Hiking&Trekking" id="" />Hiking & Trekking</label><br>
+            <label><input type="checkbox" name="package-style" value="Safari" id="" />Safari</label><br>
+            <label><input type="checkbox" name="package-style" value="HotAirBalloon" id="" />Hot Air Balloon</label><br>
+            <label><input type="checkbox" name="package-style" value="Paraglid" id="" />Paraglid</label><br>
+            <label><input type="checkbox" name="package-style" value="Camping" id="" />Camping</label><br>
+            <label><input type="checkbox" name="package-style" value="Sking" id="" />Sking</label><br>
+            <label><input type="checkbox" name="package-style" value="Health&Spa" id="" />Health & Spa</label><br>
+        </form>
+        
+        </div>
+        <div class="search-pk">
+            <div class="package-container">
+                {%if package%}
+                {% for item in package %}
+                <div class="pk-item"data-id="" data-category="{{item.package_duration}} {{item.category}}">
+                    <div class="pk-image">
+                        <img src="{{item.package_image.url}}" alt="">
+                    </div>
+                    <h4><a href="{% url 'packagedetail' item.id item.package_name %}">{{item.package_name}}</a></h4>
+                    <div class="pk-location">Explore India :{{item.package_location}}</div>
+                    <div class="pk-disc">
+                        <p><i class="fas fa-car"></i>{{item.package_vehicle}}</p>
+                        <p><i class="fas fa-calendar-alt"></i>{{item.package_duration}} Days</p>
+                        <p><i class="fas fa-star"></i>{{item.category}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {%else %}
+          <h3 style="color: lightgray; text-align: center;padding: 13rem;">No Packages  Available</h3>
+        {%endif%}
+            </div>  
+        </div>
+    </div>
+</div>
+<div class="container">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link disabled" href="#"  aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link active" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+</div>
+<!-- destination page ends  -->
+
+{% endblock content%}
+
+{% block script%}
+<script>
+    jQuery(function(){ // document ready to process
+
+jQuery('form').find("input").on('change',function(){ // when the input changes
+let selected = []; // init a selected array
+jQuery('form').find("input").each(function(){ // on every input 
+if(jQuery(this).is(":checked")){ // check if the input is checked
+  selected.push(jQuery(this).val()); // push the selected value to selected array
+}
+})
+if(!selected.length){ // if no items selected
+jQuery("div.package-container .pk-item").show(); // show all
+return; // stop code execution
+
+}
+jQuery("div.package-container .pk-item").hide(); // hide all divs
+jQuery("div.package-container .pk-item").each(function(){ // take each div
+const category = jQuery(this).attr('data-category'); // capture the attribute category
+const categorySplitted = category.split(' '); // split each category by space
+categorySplitted.forEach((cat)=>{ // foreach category array
+  if(selected.indexOf(cat) !== -1){ // cross check with selected categories; if selected
+  jQuery(this).show(); // show the div
+  }
+});
+
+});
+});
+
+});
+</script>
+<script>
+
+$(document).ready(function(){
+    const  day_range=document.getElementById("day-range").value;
+    const  day_range_sh=document.getElementsByClassName("day-range-sh").innerHTML("hi");    
+ });
+ 
+</script>
+
+{% endblock script%}

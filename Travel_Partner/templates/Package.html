@@ -1,0 +1,446 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+{% block content%}
+
+{% for item in package%}
+<div class="detail container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home'%}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'search'%}">Destination</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{item.package_name}}</li>
+    </ol>
+  </nav>
+
+  <div class="package-details">
+    <div class="package-img">
+      <img src="{{item.package_image.url}}" alt="" />
+      <h3>{{item.package_name}}</h3>
+    </div>
+    
+    <div class="package-about">
+      
+      <h6>TOUR OVERVIEW </h6>
+      <hr>
+      <p><i class="fa-solid fa-location-dot"></i> DESTINATION : {{item.package_location}}</p>
+      <p><i class="fas fa-calendar-alt"></i> DURATION : {{item.package_duration}} Days</p>
+      <p><i class="fa-solid fa-compass"></i> CATEGORY : {{item.category}}</p>
+      <p><i class="fa-solid fa-person-walking"></i> AGE RANGE : {{item.package_age}}</p>
+      <p><i class="fa-solid fa-users"></i> MAX GROUP SIZE: {{item.package_size}}</p>
+      <p><i class="fa-solid fa-car"></i> TRAVEL BY : {{item.package_vehicle}}</p>
+    </div>
+  </div>
+<hr>
+  <div class="plan">
+  <div class="plan-details">
+<div class="weather container card">
+  <div class="search-box">
+      <i class="fa-solid fa-location-dot"></i>
+      <input type="text" value="{{item.package_location}}" placeholder="Enter your location">
+      <button class="fa-solid fa-magnifying-glass"></button>
+  </div>
+
+  <div class="not-found">
+      <p>Oops! Invalid location :/</p>
+  </div>
+<div class="weather-container">
+  <div class="weather-box fadeIn">
+      <img src="">
+      <p class="temperature"></p>
+      <p class="description"></p>
+  </div>
+
+  <div class="weather-details fadeIn">
+      <div class="humidity">
+          <i class="fa-solid fa-water"></i>
+          <div class="text">
+              <span></span>
+              <p>Humidity</p>
+          </div>
+      </div>
+      <div class="wind">
+          <i class="fa-solid fa-wind"></i>
+          <div class="text">
+              <span></span>
+              <p>Wind Speed</p>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+    <div class="map">
+      <h4><i class="fa-solid fa-map-location-dot"></i> View Map</h4>
+      <br>
+      <iframe src="{{item.package_map}}" width="700" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="package-highlight">
+      <h4>Highlights</h4>
+      <li><i class="fa-regular fa-circle-check"></i>Best experience get this trip</li>
+      <li><i class="fa-regular fa-circle-check"></i>Refuel and reward yourself with great local cuisine</li>
+      <li><i class="fa-regular fa-circle-check"></i>Reach the most south-westerly point of india</li>
+      <li><i class="fa-regular fa-circle-check"></i>Explore the ruins of the medieval castle</li>
+      <li><i class="fa-regular fa-circle-check"></i>Relax on beautiful beaches and witness stunning sunsets</li>
+
+    </div>
+    <div class="package-plan">
+      <h4>Itinerary </h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo nihil aliquam veniam pariatur odio dolorem fugiat magni nostrum eaque quae.</p>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Day 1
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam ad quos fuga nostrum ut eligendi?</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              Day 2
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis rem, repudiandae culpa quidem omnis quam?</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Day 3
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque quam, architecto quod veritatis consequuntur facere error eligendi adipisci est distinctio.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+              Day 4
+            </button>
+          </h2>
+          <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis delectus placeat ad quia totam repellendus et repudiandae sequi mollitia. Voluptatem.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapsefive" aria-expanded="false" aria-controls="flush-collapsefive">
+              Day 5
+            </button>
+          </h2>
+          <div id="flush-collapsefive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores vitae officia libero esse, illo necessitatibus sapiente beatae nihil placeat quis?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="package-plan">
+      <h4>What's Included</h4>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapse10" aria-expanded="false" aria-controls="flush-collapse10">
+              <i class="fa-regular fa-circle-check"></i> Accommodation
+            </button>
+          </h2>
+          <div id="flush-collapse10" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">- Best Accommodation is providing.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapse12" aria-expanded="false" aria-controls="flush-collapse12">
+              <i class="fa-regular fa-circle-check"></i> Guide
+            </button>
+          </h2>
+          <div id="flush-collapse12" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">-we employs a team of qualified, experienced and passionate field guides to lead every Tour experience.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapse13" aria-expanded="false" aria-controls="flush-collapse13">
+              <i class="fa-regular fa-circle-check"></i>  Meals
+            </button>
+          </h2>
+          <div id="flush-collapse13" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div>- We provide all dietery needs, let us know your favourite dishes and our proffesional chef will work on it.</div>
+              <div>- This tour offers Vegetarian, Vegan and Halal food options on request. </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapse14" aria-expanded="false" aria-controls="flush-collapse14">
+              <i class="fa-regular fa-circle-check"></i> Transport
+            </button>
+          </h2>
+          <div id="flush-collapse14" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+             <div>- Door-to-door pick-up & drop-off services by private car</div> 
+              <div>- Air-conditioned bus or private cars for the excursions</div></div> 
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapse15" aria-expanded="false" aria-controls="flush-collapse15">
+              <i class="fa-regular fa-circle-check"></i> Insurance
+            </button>
+          </h2>
+          <div id="flush-collapse15" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">- Insurance Policy is Available in this Tour.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapse16" aria-expanded="false" aria-controls="flush-collapse16">
+              <i class="fa-regular fa-circle-check"></i> Additional Services
+            </button>
+          </h2>
+          <div id="flush-collapse16" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div>- Tour Restrictions & Tips will updated.</div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapse17" aria-expanded="false" aria-controls="flush-collapse17">
+              <i class="fa-regular fa-circle-check"></i> Travel Accessory
+            </button>
+          </h2>
+          <div id="flush-collapse17" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              - Travel Accessory will be provided Free.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="package-reviews">
+      <h4>Customer Reviews </h4>
+      <div class="card" style="width: 100%;">
+
+        <div class="card-header">
+          <div class="or-cn">
+          <i class="fa-solid fa-hand-sparkles"></i>
+          <div>
+            <h6>Overall Rating </h6>
+            <p style="font-size: 0.9rem;">Excellent </p>
+          </div>
+        </div>
+
+          <div>
+            4.5<i class="fa-solid fa-star"></i>
+          </div>
+
+        </div>
+        <div class="list-body">
+
+          <ul class="list-group list-group-flush " style="width: 50%;">
+
+            <li class="list-group-item">
+              <i class="far fa-file" style="font-size: 1.5rem;"></i>
+              <div class="review-item">
+                <h6>Itinerary</h6>
+                <p>Excellent </p>
+              </div>
+              <div> 4.5<i class="fa-solid fa-star"></i></div>
+            </li>
+            
+            <li class="list-group-item">
+              <i class="fa-solid fa-van-shuttle" style="font-size: 1.5rem;"></i>
+              <div class="review-item">
+                <h6>Transport</h6>
+                <p>Excellent </p>
+              </div>
+              <div> 4.5<i class="fa-solid fa-star"></i></div>
+            </li>
+            
+            <li class="list-group-item">
+              <i class="fa-solid fa-utensils" style="font-size: 1.5rem;"></i>
+              <div class="review-item">
+                <h6>Food</h6>
+                <p>Excellent </p>
+              </div>
+              <div> 4.5<i class="fa-solid fa-star"></i></div>
+            </li>
+          </ul>
+
+          <ul class="list-group list-group-flush" style="width: 50%;">
+           
+            <li class="list-group-item">
+              <i class="fa-solid fa-user-tie"style="font-size: 1.5rem;"></i>
+              <div class="review-item">
+                <h6>Guide</h6>
+                <p>Excellent </p>
+              </div>
+              <div> 4.5<i class="fa-solid fa-star"></i></div>
+            </li>
+
+            <li class="list-group-item">
+              <i class="fa-solid fa-bed"style="font-size: 1.5rem;"></i>
+              <div class="review-item">
+                <h6>Accommodation</h6>
+                <p>Excellent </p>
+              </div>
+              <div> 4.5<i class="fa-solid fa-star"></i></div>
+            </li>
+
+            <li class="list-group-item">
+              <i class="fa-solid fa-flag"style="font-size: 1.5rem;"></i>
+              <div class="review-item">
+                <h6>Tour Operator</h6>
+                <p>Excellent </p>
+              </div>
+              <div> 4.5<i class="fa-solid fa-star"></i></div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <div class="rating">
+        <div class="rating-btn">
+          <input type="button" value="Most Recent ">
+          <input type="button"  class="active" value="Most Popular ">
+          <input type="button"  class="active" value="Newest">
+        </div> 
+        <div class="rating-card">
+          {% for items in review %}
+          <div class="rating-head">
+          <div class="image">
+            <img src="{{items.avatar.url}}" alt="">
+          </div>
+          <div>
+          <h6>{{items.name}}</h6>
+          <p>{{items.rating}} <i class="fa-solid fa-star" style="color: #ff9525;"></i></p>
+        </div>
+        </div>
+        <div class="rating-body">
+          <p>{{items.comment}}</p>
+        </div>
+        <div class="rating-foot">
+          <span style="color: gray; font-size: 0.9rem;">{{items.created_at}}</span><span><i class="fa-solid fa-thumbs-up"></i><i class="fa-solid fa-thumbs-down"></i></span>
+        </div>
+        <hr>
+        {% endfor %}
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <div class="plan-price">
+    <p>from</p>
+    <h3 style="margin-left: 2rem;">₹ {{item.price |floatformat:0}}<span style="font-size: 0.9rem;">/per Person</span></h3>
+    <a href="{% url 'Booking' item.id item.package_name%}" class="btn" style="width: 80%;">Book Now</a>
+    <div><i class="fa-solid fa-hand-holding-dollar" style="color: green;"></i>
+      <span style="font-size: 0.8rem;line-height: 2rem;color:lightblack;margin-left: 0.3rem;">Best Value for Trip</span></div>
+    <div><i class="fa-solid fa-list-check" style="color: green;"></i>
+      <span style="font-size: 0.8rem;color:lightblack;line-height: 2rem;margin-left: 0.3rem;">Additional Services provides</span></div>
+    <div><i class="fa-solid fa-notes-medical" style="color: green;"></i>
+      <span style="font-size: 0.8rem;color:lightblack;line-height: 2rem;margin-left: 0.3rem;">Insurance Available in the Tour</span></div>
+      
+    
+  </div>
+</div>
+</div>
+{% include 'inc/Subscribe.html'%}
+{% endfor %}
+
+{% endblock content%}
+{% block script%}
+<script>
+  const container = document.querySelector('.weather');
+const search = document.querySelector('.search-box button');
+const weatherBox = document.querySelector('.weather-box');
+const weatherDetails = document.querySelector('.weather-details');
+const error404 = document.querySelector('.not-found');
+
+["click", "DOMContentLoaded"].forEach((event) => {
+window.addEventListener(event,weather_check)
+})
+
+function weather_check(){
+
+
+  const APIKey = '2c2a384f79ffabdd30a9e370c06e8cd9';
+  const city = document.querySelector('.search-box input').value;
+
+  if (city === '')
+      return;
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
+      .then(response => response.json())
+      .then(json => {
+
+          if (json.cod === '404') {
+              weatherBox.style.display = 'none';
+              weatherDetails.style.display = 'none';
+              error404.style.display = 'block';
+              error404.classList.add('fadeIn');
+              return;
+          }
+          error404.style.display = 'none';
+          error404.classList.remove('fadeIn');
+
+          const image = document.querySelector('.weather-box img');
+          const temperature = document.querySelector('.weather-box .temperature');
+          const description = document.querySelector('.weather-box .description');
+          const humidity = document.querySelector('.weather-details .humidity span');
+          const wind = document.querySelector('.weather-details .wind span');
+
+          switch (json.weather[0].main) {
+              case 'Clear':
+                  image.src = "{% static 'images/clear.png' %}";
+                  break;
+
+              case 'Rain':
+                  image.src = "{% static 'images/rain.png' %}";
+                  break;
+
+              case 'Snow':
+                  image.src =  "{% static 'images/snow.png' %}";
+                  break;
+
+              case 'Clouds':
+                  image.src =  "{% static 'images/cloud.png' %}";
+                  break;
+
+              case 'Haze':
+                  image.src =  "{% static 'images/mist.png' %}";
+                  break;
+
+              default:
+                  image.src = "{% static 'images/mist.png' %}";
+          }
+
+          temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
+          description.innerHTML = `${json.weather[0].description}`;
+          humidity.innerHTML = `${json.main.humidity}%`;
+          wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+
+
+      });
+
+}
+</script>
+{% endblock script%}

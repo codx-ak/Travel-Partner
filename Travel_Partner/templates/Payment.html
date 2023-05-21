@@ -1,0 +1,134 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+
+{% block content%}
+
+<div class="container Payment">
+    <div class="summary">
+    <h4> Payment Summary</h4>
+    <hr>
+    <div class="payment-summary">
+        <div>
+        <span>Package price :</span><span>₹ {{booking.0 | floatformat:0}}</span>
+        </div>
+        <div>
+        <span>Total travelers :</span><span>{{booking.1}} Persons </span>
+        </div>
+        <div>
+        <span>Transport Charges :</span><span id="Transport">{{booking.2}}</span>
+        </div>
+        <div>
+        <span>Driver Charges :</span><span id="Driver">{{booking.3}}</span>
+        </div>
+        <div>
+        <span>Insurance Charges :</span><span id="Insurance">{{booking.4}}</span>
+        </div>
+        <div>
+        <span>Special Discount :</span><span> - 5000</span>
+        </div>
+        <hr>
+        <div>
+        <span>Total Price  :</span><span>₹ <span id="Total">{{booking.5}}</span></span>
+        </div>
+        <hr>
+    </div>
+    </div>
+    <div class="payments">
+        <div class="payment-group">
+            <div class="card-group card">
+            <label for="card">Pay with Card</label>
+            <input type="radio" name="payment" value="card">
+            </div>
+            <div class="card-group card">
+            <label for="upi">Pay with UPI</label>
+            <input type="radio" name="payment" value="upi">
+            </div>
+        </div>
+        <div class="card payment-detail">
+            <div id="Checkout" class="inline">           
+                <form action="{% url 'Add_Booking'%}" method="POST">
+                    {%csrf_token%}
+                    <div class="form-group">
+                        <input type="hidden" name="payment_option"value="Card">
+                        <input type="hidden" name="booking_id"value="{{booking.6}}">
+                        <label or="NameOnCard">Name on card <div class="card-row">
+                          <span class="visa"></span>
+                          <span class="mastercard"></span>
+                          <span class="amex"></span>
+                          <span class="discover"></span>
+                      </div></label>
+                        <input id="NameOnCard" class="form-control" autocomplete="off" type="text" maxlength="255"></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="CreditCardNumber">Card number</label>
+                        <input id="CreditCardNumber" autocomplete="off"  class="null card-image form-control" type="number" required></input>
+                    </div>
+                    <div class="expiry-date-group form-group">
+                        <label for="ExpiryDate">Expiry date</label>
+                        <input id="ExpiryDate" class="form-control" autocomplete="off" type="month" placeholder="MM / YY" required></input>
+                    </div>
+                    <div class="security-code-group form-group">
+                        <label for="SecurityCode">Security code</label>
+                        <div class="input-container" >
+                            <input id="SecurityCode" autocomplete="off" class="form-control" type="number" required ></input>
+                            <i id="cvc" class="fa fa-question-circle"></i>
+                        </div>
+                    </div>
+                    <div class="zip-code-group form-group">
+                        <label for="ZIPCode">ZIP/Postal code</label>
+                        <div class="input-container">
+                            <input id="ZIPCode" autocomplete="off" class="form-control" type="text" maxlength="10" required></input>
+                            <i id="cvc" class="fa fa-question-circle"></i>
+                        </div>
+                    </div>
+                    <button id="PayButton" class="btn btn-block btn-success submit-button" type="submit">
+                        <span class="submit-button-lock"></span>
+                        <span class="align-middle">Pay Now</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="upi payment-detail">
+            <div id="Checkout" class="inline"> 
+                <form action="{% url 'Add_Booking'%}" method="POST">
+                    {%csrf_token%} 
+                <div class="form-group" style="margin-top: 2rem;">
+                    <input type="hidden" name="payment_option"value="UPI">
+                    <input type="hidden" name="booking_id"value="{{booking.6}}">
+                    <label for="NameOnupi">UPI ID</label>
+                    <input id="NameOnupi" autocomplete="off" class="form-control"  type="text" maxlength="255" required></input>
+                </div>
+                <button id="PayButton" class="btn btn-block btn-success submit-button mt-20" type="submit">
+                    <span class="submit-button-lock"></span>
+                    <span class="align-middle">Pay Now</span>
+                </button>
+            </form>
+        </div>
+        </div>
+        
+    </div>
+    
+</div>
+{% endblock content%}
+{% block script%}
+
+<script>
+$(document).ready(function(){
+  
+    var payment_option=null;
+    const  payment_status="Paid";
+
+    $('input[type="radio"]').click(function(){
+      var inputValue = $(this).attr("value");
+      var targetBox = $("." + inputValue);
+      $(".payment-detail").not(targetBox).hide();
+      $(targetBox).show();
+
+      payment_option=inputValue;
+      
+     });
+});
+    
+</script>
+
+{% endblock script%}

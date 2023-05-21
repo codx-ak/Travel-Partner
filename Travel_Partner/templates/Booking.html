@@ -1,0 +1,208 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+
+{% block content%}
+
+<div class="container" style="margin-bottom: 1rem; padding: 0 2rem;">
+  <div class="cart">
+  {% for item in package %}
+  
+ <div class="card" style="padding: 1rem;">
+  <form class="row g-3" method="post" action="{% url 'payment' %}">
+    {%csrf_token%}
+    <h4>Personal Details</h4> 
+    <hr>
+    <input type="hidden" value="{{item.id}}" name="pid">
+    <input type="hidden" name="Price" value="{{item.price}}">
+
+    <div class="col-md-4">
+      <input type="text" autocomplete="off" class="form-control" placeholder="Enter Name" name="name" required>
+    </div>
+    <div class="col-md-4">
+      <input type="email" autocomplete="off" class="form-control" placeholder="Enter Email " name="email" required>
+    </div>
+  
+    <div class="col-md-4">
+      <input type="text" autocomplete="off" class="form-control" placeholder="Enter Mobile" maxlength="10" name="mobile" required>
+    </div>
+
+    <div class="col-md-4">
+      <input type="text" autocomplete="off" class="form-control" placeholder="Enter Address" name="address" required>
+    </div>
+    <div class="col-md-4">
+      <select class="form-select" name="state" required>
+        <option selected disabled value="">Choose State</option>
+        <option>TamilNadu</option>
+        <option>Kerala</option>
+        <option>Karnataka</option>
+        <option>Madhya Pradesh</option>
+        <option>Andhra Pradesh</option>
+        <option>New Delhi</option>
+        <option>Maharastra</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <input type="text" autocomplete="off" placeholder="Enter PinCode" class="form-control" maxlength="7" name="pincode" required>
+    </div>
+    <div class="col-md-4">
+      <label for="proof" class="form-label">ID Proof</label>
+      <input type="file" class="form-control" placeholder="Enter ID Proof" name="proof" required>
+    </div>
+
+    <div class="col-md-4">
+      <label for="from" class="form-label">Starting Point</label>
+      <input type="text" autocomplete="off"  class="form-control" name="from" required>
+    </div>
+
+    <div class="col-md-4">
+      <label for="date" class="form-label">Starting Date</label>
+      <input type="date" class="form-control" placeholder="Starting Date" pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])-(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])-(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" 
+      name="date" id="myDate" min="" required>
+    </div>
+
+    <div class="col-md-4">
+      <input type="number" max="5" min="1" value="1" placeholder="Enter Total Travelers" class="form-control" name="traveler" id="traveler" required>
+    </div>
+
+    <div class="col-md-4">
+      <input type="number" max="5" min="0" placeholder="No of Adult(Age :19-55)" class="form-control" name="traveler-1" id="traveler-1" required>
+    </div>
+
+    <div class="col-md-4">
+      <input type="number" max="5" min="0" placeholder="No of Kids(Age :10-18)" class="form-control" name="traveler-2" id="traveler-2" required>
+    </div>
+
+    <div class="col-md-4">
+      <label for="driver" class="form-label">Are you want Driver ?</label>
+      <select class="form-select" name="driver" required>
+        <option selected disabled value="">Choose...</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="car" class="form-label">Are you want Vehicle ?</label>
+      <select class="form-select" name="vehicle" required>
+        <option selected disabled value="">Choose...</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="insurance" class="form-label">Travel Insurance</label>
+      <select class="form-select" name="insurance" required>
+        <option selected disabled value="">Choose...</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+        <label class="form-check-label" for="invalidCheck2">
+          Agree to terms and conditions
+        </label>
+      </div>
+    </div>
+    <div class="col-12"style="position: relative;left: 60%;" >
+        <button type="submit" id="btnbooking" class="btn btn-primary">Confirm Booking</button>
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">View Package</button>
+    </div>
+  </form>
+  
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Package Details</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="row g-0">
+        <div class="col-md-12">
+          <img src="{{item.package_image.url}}" style="height: 100%;object-fit: cover;" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-12">
+          <div class="card-body">
+            <div class="package-about">
+              <h5 class="card-title">{{item.package_name}}</h5>
+              <hr>
+              <p><i class="fa-solid fa-location-dot"></i> DESTINATION : {{item.package_location}}</p>
+              <p><i class="fas fa-calendar-alt"></i> DURATION : {{item.package_duration}} Days</p>
+              <p><i class="fa-solid fa-compass"></i> CATEGORY : {{item.category}}</p>
+              <p><i class="fa-solid fa-person-walking"></i> AGE RANGE : {{item.package_age}}</p>
+              <p><i class="fa-solid fa-users"></i> MAX GROUP SIZE: {{item.package_size}}</p>
+              <p><i class="fa-solid fa-car"></i> TRAVEL BY : {{item.package_vehicle}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+</div>
+
+{% endfor %}
+
+{% endblock content%}
+
+{% block script%}
+<script>
+  function myFunction() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1;
+  let dd = today.getDate();
+
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+
+  const formattedToday = yyyy+ '-' + mm + '-'+ dd ;
+  var x = document.getElementById("myDate").min = formattedToday;
+}
+  myFunction()
+</script>
+<script>
+  const traveler=document.getElementById("traveler");
+  const traveler1=document.getElementById("traveler-1");
+  const traveler2=document.getElementById("traveler-2");
+  
+  traveler.addEventListener("change", () => {
+    if (traveler.value>=6) {
+      alert('Maxmium Group Size is 5');
+      traveler.value=1;
+    }
+  });
+  
+    traveler1.addEventListener("change", () => {
+    if (traveler1.value>=6) {
+      alert('Maxmium Group Size is 5');
+      traveler1.value=5;
+    }
+  });
+
+  traveler2.addEventListener("change", () => {
+    if (traveler2.value>=6) 
+    {
+      alert('Maxmium Group Size is 5');
+      traveler2.value=5;
+    }
+    else{
+      if(Number(traveler1.value)+Number(traveler2.value)===Number(traveler.value))
+        {
+
+        }
+      else{
+        alert("Enter Valid Group Size ")
+        traveler1.value=traveler.value
+        traveler2.value=0
+      }
+    }
+      
+  });
+</script>
+{% endblock script%}
+

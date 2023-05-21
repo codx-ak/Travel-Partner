@@ -1,0 +1,33 @@
+<!-- Navbar page starts  -->
+{% load static %}
+<header id="header">
+
+    <a href="{% url 'home'%}" class="logo">travel Partner</a>
+
+    <nav class="navbar">
+        <a href="{% url 'home'%}">home</a>
+        <a href="{% url 'category'%}">category</a>
+        <a href="{% url 'search'%}">destination</a>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'Mybooking' %}">My Booking</a>
+      
+        <a class=" dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
+            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <img src="{% static 'images/default.jpg'%}" class="rounded-circle"
+              height="30" alt="Avatar" loading="lazy" />
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item"style="width: 80%;background:white;" href="{% url 'Logout' %}">Logout</a>
+            </li>
+          </ul>
+        {% else %}
+        <a class="log-btn" href="{% url 'Register'%}">Register</a>
+
+    {% endif %}
+  </nav>
+    
+    <div id="menu-btn" class="fas fa-bars"></div>
+</header>
+
+<!-- Navbar page ends  -->

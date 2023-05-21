@@ -1,0 +1,99 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+{% block content%}
+<section class="container category-detail">
+  {% for item in category %}
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home'%}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'category'%}">Category</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{item.name}}</li>
+    </ol>
+  </nav>
+
+  <h3>{{item.name}}</h3>
+  <div class="description">
+    <p>{{item.description}}</p>
+    <img src="{{item.image.url}}" alt="">
+  </div>
+  <hr>
+  <div class="show-all">
+    <h4>Best Adventures</h4><a href="{% url 'searchpackage' item.name%}">show all</a>
+  </div>
+  <div class="package-container">
+    {% if package%}
+    {% for items in package %}
+    <div class="pk-item">
+      <div class="pk-image">
+        <img src="{{items.package_image.url}}" alt="">
+      </div>
+      <h4><a href="{% url 'packagedetail' items.id items.package_name %}">{{items.package_name}}</a></h4>
+      <div class="pk-location">Explore India :{{items.package_location}}</div>
+      <div class="pk-disc">
+        <p><i class="fas fa-car"></i>{{items.package_vehicle}}</p>
+        <p><i class="fas fa-calendar-alt"></i>{{items.package_duration}} Days</p>
+        <p><i class="fas fa-star"></i>{{items.category}}</p>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3 style="color: lightgray; text-align: center;">No Packages  Available</h3>
+    {%endif %}
+
+  </div>
+  <div class="intro"style="margin:4rem 0;">
+    <h3 class="text-center">{{item.name}} Blogs</h3>
+    <hr>
+  </div>
+ 
+  <div class="row row-cols-1 row-cols-md-3 g-4 container">
+    {% for blog in blog %}
+    <div class="col">
+      <div class="card h-100 blog">
+        <img src="{{blog.blog_image.url}}" loading="lazy" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{blog.blog_name}}</h5>
+          <p class="card-text">{{blog.blog_description}}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary">Last updated {{blog.created_at}}</small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<div class="lightbox-gallery">
+  <div class="container">
+    <div class="intro">
+      <h3 class="text-center">{{item.name}} Gallery</h3>
+      <hr>
+    </div>
+    {% for photo in gallery %}
+    <div class="row photos">
+      <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="#" data-lightbox="photos"><img class="img-fluid"
+            src="{{photo.gallery_image1.url}}"></a></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="#" data-lightbox="photos"><img class="img-fluid"
+            src="{{photo.gallery_image2.url}}"></a></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="#" data-lightbox="photos"><img class="img-fluid"
+            src="{{photo.gallery_image3.url}}"></a></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="#" data-lightbox="photos"><img class="img-fluid"
+            src="{{photo.gallery_image4.url}}"></a></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="#" data-lightbox="photos"><img class="img-fluid"
+            src="{{photo.gallery_image5.url}}"></a></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="#" data-lightbox="photos"><img class="img-fluid"
+            src="{{photo.gallery_image6.url}}"></a></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="#" data-lightbox="photos"><img class="img-fluid"
+            src="{{photo.gallery_image7.url}}"></a></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="#" data-lightbox="photos"><img class="img-fluid"
+            src="{{photo.gallery_image8.url}}"></a></div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% include 'inc/Subscribe.html'%}
+
+{% endfor %}
+{% endblock content%}

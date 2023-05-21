@@ -1,0 +1,25 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+{% block content%}
+
+    <div class="title">
+        <h3>Tour Category</h3>
+    </div>
+
+    <section id="category">
+        <div class="page-title">
+            <h3>Adventures Styles</h3>
+        </div>
+        <div class="card-container">
+          {% for item in category %}
+          <a href="{% url 'categoryview' item.name%}" class="card" style="width: 18rem;">
+            <img src="{{item.image.url}}" loading="lazy" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+          </div>
+        </a>
+          {% endfor %}
+        </div>
+    </section>
+    {% include 'inc/Subscribe.html'%}
+    {% endblock content%}

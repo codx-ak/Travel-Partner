@@ -1,0 +1,104 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+{% block content%}
+
+<!-- home page starts  -->
+<div class="home">
+<video src="{% static 'images/background2.mp4'%}" class="img-fluid" autoplay loop muted></video>
+<div>
+<h3>Your Journy Your Story !</h3>
+<p>Adventure Awaits, go find it.</p>
+</div>
+</div>
+
+<div class="Packages container">
+    <div class="package-title">
+    <h3>You'll fall in love with India</h3>
+    <p>Explore India from Kashmir to Kaniyakumari</p>
+    </div>
+    <div class="package-container">
+        {% for item in package %}
+        <div class="pk-item">
+            <div class="pk-image">
+                <img src="{{item.package_image.url}}" alt="">
+            </div>
+            <h4><a href="{% url 'packagedetail' item.id item.package_name %}">{{item.package_name}}</a></h4>
+            <div class="pk-location">Explore India :{{item.package_location}}</div>
+            <div class="pk-disc">
+                <p><i class="fas fa-car"></i>{{item.package_vehicle}}</p>
+                <p><i class="fas fa-calendar-alt"></i>{{item.package_duration}} Days</p>
+                <p><i class="fas fa-star"></i>{{item.category}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'search'%}" class="btn show-btn">Show More</a>
+</div>
+<div class="about">
+    <div class="about-container container">
+        <div class="image">
+            <img src="{% static 'images/hero-banner.png'%}" alt="">
+        </div>
+        <div class="about-disc">
+            <h2>Why us?</h2>
+            <p>Organising your own holiday can be a stressful task. Let us do the work for you! By choosing
+                Travengo, you can save time and hassle itinerary services directly with a
+                specialised local agency. </p>
+            <p>Organising your own holiday can be a stressful task. Let us do the work for you! By choosing
+                Travengo, you can save time and hasslewith a
+                specialised local agency. </p>
+            <p>Organising your own holiday can be a stressful task. Let us do the work for you! By choosing
+                Travengo, you can with a
+                specialised local agency. </p>
+        </div>
+
+    </div>
+    <div class="about-service">
+        <div class="image">
+            <img src="{% static 'images/bg.jpg'%}" alt="">
+            <div>
+            <h3>Always in our customer Favour</h3>
+            <p>Who are always with tight Budget</p>
+        </div>
+        </div>
+        <ul class="container">
+            <li><i class="fas fa-hotel"></i><span>5 Star Accommodations</span></li>
+            <li><i class="fas fa-suitcase-rolling"></i><span>Inclusive Packages</span></li>
+            <li><i class="fas fa-taxi"></i><span>Latest Model Vehicles</span></li>
+            <li><i class="fas fa-tasks"></i><span>Accesibility Management</span></li>
+            <li><i class="fas fa-language"></i><span>10 Languages Available</span></li>
+            <li><i class="fas fa-users"></i><span>Great Tour Guides</span></li>
+        </ul>
+    </div>
+</div>
+<div class="cancel-cn">
+    <h1>Free cancellation</h1>
+    <p> You'll receive a full refund if you cancel at least 24 hours in advance of most experiences.</p>
+</div>
+
+<div class="guideline container">
+    <div class="guideline-container">
+        <div class="guideline-content">
+            <h4>Up-to-date Travel guidelines</h4>
+            <p>See detailed travel guidelines.</p>
+            <a href="{% url 'guideline'%}">View More</a>
+        </div>
+        <img src="{% static 'images/guideline.png'%}" alt="">
+    </div>
+</div>
+
+<div class="insurance-1 container">
+    <div class="insurance-1-container">
+        <img src="{% static 'images/ins.png'%}" alt="">
+        <div class="insurance-1-content">
+            <h4>Travel Insurance </h4>
+            <p>Travel Insurance covers medical expenses, lost luggage and other losses incurred while travelling, within the country.</p>
+            <a href="{% url 'insurance'%}">Learn More</a>
+        </div>
+    </div>
+</div>
+
+{% include 'inc/Subscribe.html'%}
+
+<!-- home page ends  -->
+{% endblock content%}

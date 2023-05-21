@@ -1,0 +1,88 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+
+{% block content%}
+
+<div class="container mybooking">
+<h3>My Bookings</h3>
+<hr>
+{% if booking %}
+
+{% for item in booking %}
+{% for items in guide %}
+<div class="card mb-3" style="width: 100%;">
+    <div class="row g-0">
+      <div class="col-md-4 package-image">
+        <img src="{{item.package.package_image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-6">
+        <h5 style="text-align: center;padding: 0.5rem;">{{item.package.package_name}}</h5>
+        <div style="display: flex;">
+        <div class="card-body col-md-6">
+          <p class="card-text">Duration : {{item.package.package_duration}} Days</p>
+          <p class="card-text">Location : {{item.package.package_location}}</p>
+          <p class="card-text">Ratings : {{item.package.package_rating}} <span><i class="fa-solid fa-star" style="color: #ff9525;"></i></span></p>
+          {%if item.status%}
+          <p class="card-text">Status : <span style="color: green;">Confirmed</span> </p>
+          {%else%}
+          <p class="card-text">Status : <span style="color: green;">Pending</span> </p>
+          {%endif%}
+        </div>
+        <div class="card-body col-md-6">
+          <p class="card-text">Total travelers : {{item.travelers}}</p>
+          <p class="card-text">Starting Point : {{item.starting_location}}</p>
+          <p class="card-text"> Starting Date : {{item.starting_date}}</p>
+          <p class="card-text"> Total Price : {{item.total_price}}</p>
+
+        </div>
+      </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card-body">
+          <p class="paid"><i class="fa-solid fa-receipt"></i> paid</p>
+          <div class="contact-btn">
+          <a data-bs-toggle="modal" class="guide_btn" data-bs-target="#exampleModal">
+            Contact Guide
+            </a>
+            <a href="{% url 'cancelbooking' item.id %}" class="btn btn-primary"> <i class="fa-solid fa-trash-can"></i> Cancel</a>
+          
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Guide Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+        <p>Age  : {{items.age}}</p>
+        <p>City  : {{items.city}}</p>
+        <p>Experience : {{items.experience}}</p>
+        <p>Contact : {{items.mobile}}</p>
+        <p>Email :{{items.email}}</p>
+      </div>
+      <div>
+        <div class="image">
+          <img src="{{items.avatar.url}}" alt="">
+        </div>
+        <h6 style="text-align:center;">{{items.name}}</h6>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor%}
+{% endfor%}
+{%else%}
+<p style="color: gray;font-size: 1.4rem;position: relative;left: 30%;padding: 5rem;">No Bookings Available</p>
+{%endif%}
+</div>
+{% endblock content%}

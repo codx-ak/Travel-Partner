@@ -1,0 +1,30 @@
+{% extends 'layouts/main.html'%}
+{% load static %}
+{% block content%}
+<div class="contact">
+    <div class="container">
+        <form class="row g-3 card" action="" method="post">
+          {%csrf_token%}
+          <h3 style="text-align: center;">Contact Us</h3>
+          <div class="col-md-10">
+              <label for="inputname" class="form-label">Name</label>
+              <input type="text" class="form-control" name="name">
+            </div>
+          <div class="col-md-10">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email">
+          </div>
+          
+          <div class="col-10">
+            <label for="textarea1" class="form-label">Message</label>
+            <textarea class="form-control" name="message" rows="3"></textarea>
+          </div>
+      
+          <div class="col-10">
+            <button type="submit" class="btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+          </div>
+        </form>
+  </div>
+</div>
+
+{% endblock content%}
