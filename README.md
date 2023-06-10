@@ -15,23 +15,32 @@ Make Changes:
 
 Settings.py
 {
+
     Billing Process
-    ---------------------
-    EMAIL_HOST_USER =  ' YOUR MAIL ID'
-    EMAIL_HOST_PASSWORD = 'MAIL PASSWORD '
+    -----------------
+
+        EMAIL_HOST_USER =  ' YOUR MAIL ID'
+        EMAIL_HOST_PASSWORD = 'MAIL PASSWORD '
+
 
 
     Storage of the project
     ------------------------
-    CLOUDINARY_STORAGE={ "YOUR API KEY "}
+
+        CLOUDINARY_STORAGE={ "YOUR API KEY "}
+
 }
 
 views.py
+
 {
+
     email process
     ------------------------
-    add_booking():
-        from_email = 'Travel Partner <Your Mail ID>'
+
+        add_booking():
+            from_email = 'Travel Partner <Your Mail ID>'
+
 
 }
 
