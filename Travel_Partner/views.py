@@ -131,8 +131,8 @@ def Add_Booking(request):
             subject = 'Thank You for Your Booking !'
             html_message = render_to_string('Invoice.html',{"bill":bill})
             plain_message = strip_tags(html_message)
-            from_email = 'Travel Partner <moorthimt15@gmail.com>'
-            to = 'moorthiofficial02@gmail.com'
+            from_email = 'Travel Partner <Your Mail ID>'
+            to = detail.user_email
             send_mail(subject, plain_message, from_email, [to], html_message=html_message)
             
         

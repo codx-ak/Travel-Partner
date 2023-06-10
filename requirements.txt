@@ -1,0 +1,22 @@
+asgiref==3.6.0
+certifi==2022.12.7
+charset-normalizer==3.1.0
+cloudinary==1.32.0
+Django==4.1.7
+django-admin-berry @ git+https://github.com/app-generator/django-admin-berry.git@60a6a2c85674a4c07ac562b0a579857348fab244
+django-admin-material-dashboard==1.0.9
+django-admin-volt==1.0.10
+django-cloudinary-storage==0.3.0
+django-jazzmin==2.6.0
+gunicorn==20.1.0
+idna==3.4
+Pillow==9.4.0
+python-dotenv==1.0.0
+python-git==2018.2.1
+requests==2.28.2
+Send2Trash==1.8.0
+six==1.16.0
+sqlparse==0.4.3
+tzdata==2022.7
+urllib3==1.26.15
+whitenoise==6.4.0
