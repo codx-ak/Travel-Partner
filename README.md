@@ -10,7 +10,7 @@ It is an easiest platform for all travellers which can be easily booked and know
 It aims to expand its services to include travel insurance and visa assistance in the future. 
 The platform also plans to expand its operations to other countries and offer localized services.
 
-Make Changes:
+## Make Changes
 
 
 Settings.py
