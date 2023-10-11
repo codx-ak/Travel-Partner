@@ -1,14 +1,85 @@
 # Travel-Partner
 
 
-Travel Partner is an innovative online platform designed to provide customers with a seamless travel booking experience.
-It focus on offering a one-stop solution for all travel-related needs, including transport, hotels and holiday packages.
-We have added all kind of trips that are possible in today’s environment.
-The admin can add packages to the website from a certain travel agents and hotels by create a tour page.
-The user can see the confirmation in their my booking page. 
-It is an easiest platform for all travellers which can be easily booked and know the all details.
-It aims to expand its services to include travel insurance and visa assistance in the future. 
-The platform also plans to expand its operations to other countries and offer localized services.
+## Project Installation
+
+Make sure you refer to the django version you are using. A quick way to start a new django project is to run the
+following command:
+
+* Install Django:
+
+```shell
+pip install django
+```
+
+* Install Python Pipenv:
+
+```shell script
+pip install pipenv
+```
+
+* Go to your desired development folder and create a new django project:
+
+```shell
+django-admin startproject Codemonk && cd Codemonk
+```
+
+* Install Django on you virtual environment.
+
+```shell
+pipenv install django
+```
+
+* Install  Requirements
+
+```shell script
+pip install requirements.txt
+```
+
+* Activate your new virtual environment:
+
+```shell
+pipenv shell
+```
+
+* create a new django App:
+
+```shell
+python manage.py startproject Travel
+```
+
+* Add Travel to INSTALLED_APPS in you new Django Project.
+
+```python
+INSTALLED_APPS = [
+    ...,
+    'Travel',
+    ...,
+]
+```
+
+* Perform database migrations:
+
+```shell
+python manage.py migrate
+```
+
+* Add Django SuperUser and follow the prompts.
+
+```shell
+python manage.py createsuperuser
+```
+
+* Run your project:
+
+```shell
+python manage.py runserver
+```
+
+* Navigate to Project root view assigned in your project urlpatterns setting (typically http://127.0.0.1:8000/
+if you followed this installation guide).
+* Use your superuser credentials to login.
+
 
 ## Make Changes
 
